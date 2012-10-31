@@ -26,6 +26,8 @@ Generate a DevID by creating a scenario on pushingbox.com, configure the way you
 ****************
 Change log
 ****************
+v1.2 - 31.10.12
+Add some debugging code
 
 v1.1 - 19.02.11
 Add compatibility with Arduino Software 1.0
