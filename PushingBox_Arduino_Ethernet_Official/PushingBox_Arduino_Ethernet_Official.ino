@@ -20,12 +20,15 @@ byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x19 };   // Be sure this address i
 
 // Debug mode
 #define DEBUG true
-  ///////
- //End//
-///////
+  //////////////
+ //   End    //
+//////////////
+
 
 char serverName[] = "api.pushingbox.com";
 boolean pinDevid1State = false;
+boolean lastConnected = false;                 // state of the connection last time through the main loop
+
 
 // Initialize the Ethernet client library
 // with the IP address and port of the server 
@@ -44,6 +47,9 @@ void setup() {
   }
   else{
     Serial.println("Ethernet ready");
+    // print the Ethernet board/shield's IP address:
+    Serial.print("My IP address: ");
+    Serial.println(Ethernet.localIP());
   }
   // give the Ethernet shield a second to initialize:
   delay(1000);
@@ -66,8 +72,26 @@ void loop()
         if(DEBUG){Serial.println("pinDevid1 is LOW");}
         pinDevid1State = false;
         //Sending request to PushingBox when the pin is LOW
-        //sendToPushingBox(DEVID1);
+        //sendToPushingBox(DEVID1);    //Here you can run an other scenario by creating a DEVID2 variable
       }
+      
+      
+      //DEBUG part
+      // this write the respons from PushingBox Server.
+      // You should see a "200 OK"
+      if (client.available()) {
+        char c = client.read();
+        Serial.print(c);
+      }
+      
+      // if there's no net connection, but there was one last time
+      // through the loop, then stop the client:
+      if (!client.connected() && lastConnected) {
+        Serial.println();
+        Serial.println("disconnecting.");
+        client.stop();
+      }
+      lastConnected = client.connected();
 }
 
 
@@ -90,17 +114,4 @@ void sendToPushingBox(String devid){
   else {
     if(DEBUG){Serial.println("connection failed");}
   }
-  
-  // if there are incoming bytes available 
-  // from the server, read them and print them:
-  if(DEBUG){
-    if (client.available()) {
-    char c = client.read();
-    Serial.print(c);
-    }
-  }
-
-    if(DEBUG){Serial.println();}
-    if(DEBUG){Serial.println("disconnecting.");}
-    client.stop();
 }
