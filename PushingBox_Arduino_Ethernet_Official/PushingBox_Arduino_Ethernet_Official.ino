@@ -1,6 +1,6 @@
 ////
 //
-// General code from http://www.pushingbox.com for Arduino + Ethernet Shield (official)
+// General code from http://www.pushingbox.com for Arduino + Ethernet Shield (official) v1.2
 //
 ////
 
@@ -81,14 +81,14 @@ void loop()
       // You should see a "200 OK"
       if (client.available()) {
         char c = client.read();
-        Serial.print(c);
+        if(DEBUG){Serial.print(c);}
       }
       
       // if there's no net connection, but there was one last time
       // through the loop, then stop the client:
       if (!client.connected() && lastConnected) {
-        Serial.println();
-        Serial.println("disconnecting.");
+        if(DEBUG){Serial.println();}
+        if(DEBUG){Serial.println("disconnecting.");}
         client.stop();
       }
       lastConnected = client.connected();
@@ -97,7 +97,8 @@ void loop()
 
 //Function for sending the request to PushingBox
 void sendToPushingBox(String devid){
-    if(DEBUG){Serial.println("connecting...");}
+  client.stop();
+  if(DEBUG){Serial.println("connecting...");}
 
   if (client.connect(serverName, 80)) {
     if(DEBUG){Serial.println("connected");}
