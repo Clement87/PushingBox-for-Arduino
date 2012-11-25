@@ -13,7 +13,7 @@
 byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x19 };   // Be sure this address is unique in your network
 
 //Your secret DevID from PushingBox.com. You can use multiple DevID  on multiple Pin if you want
-#define DEVID1 "Your_DevID_Here"        //Scenario : "The mailbox is open"
+char DEVID1[] = "Your_DevID_Here";        //Scenario : "The mailbox is open"
 
 //Numeric Pin where you connect your switch
 #define pinDevid1 3  // Example : the mailbox switch is connect to the Pin 3
@@ -96,7 +96,7 @@ void loop()
 
 
 //Function for sending the request to PushingBox
-void sendToPushingBox(String devid){
+void sendToPushingBox(char devid[]){
   client.stop();
   if(DEBUG){Serial.println("connecting...");}
 
