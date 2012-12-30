@@ -16,18 +16,18 @@ byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x19 };   // Be sure this address i
 char DEVID1[] = "Your_DevID_Here";        //Scenario : "The mailbox is open"
 
 //Numeric Pin where you connect your switch
-#define pinDevid1 3  // Example : the mailbox switch is connect to the Pin 3
+uint8_t pinDevid1 = 3; // Example : the mailbox switch is connect to the Pin 3
 
 // Debug mode
-#define DEBUG true
+boolean DEBUG = true;
   //////////////
  //   End    //
 //////////////
 
 
 char serverName[] = "api.pushingbox.com";
-boolean pinDevid1State = false;
-boolean lastConnected = false;                 // state of the connection last time through the main loop
+boolean pinDevid1State = false;                // Save the last state of the Pin for DEVID1
+boolean lastConnected = false;                 // State of the connection last time through the main loop
 
 
 // Initialize the Ethernet client library
