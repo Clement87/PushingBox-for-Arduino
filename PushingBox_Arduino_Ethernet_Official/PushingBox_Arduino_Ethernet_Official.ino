@@ -13,7 +13,7 @@
 byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x19 };   // Be sure this address is unique in your network
 
 //Your secret DevID from PushingBox.com. You can use multiple DevID  on multiple Pin if you want
-char DEVID1[] = "Your_DevID_Here";        //Scenario : "The mailbox is open"
+char DEVID1[] = "v2B038A4B4B4600F";        //Scenario : "The mailbox is open"
 
 //Numeric Pin where you connect your switch
 uint8_t pinDevid1 = 3; // Example : the mailbox switch is connect to the Pin 3
