@@ -25,7 +25,8 @@ boolean DEBUG = true;
 //////////////
 
 
-char serverName[] = "api.pushingbox.com";
+//char serverName[] = "api.pushingbox.com";
+char serverName[] = "213.186.33.19";
 boolean pinDevid1State = false;                // Save the last state of the Pin for DEVID1
 boolean lastConnected = false;                 // State of the connection last time through the main loop
 
@@ -104,11 +105,12 @@ void sendToPushingBox(char devid[]){
     if(DEBUG){Serial.println("connected");}
 
     if(DEBUG){Serial.println("sendind request");}
-    client.print("GET /pushingbox?devid=");
-    client.print(devid);
-    client.println(" HTTP/1.1");
-    client.print("Host: ");
-    client.println(serverName);
+    client.print("GET /pushingbox?devid="Your_DevID_Here" HTTP/1.1\r\nHost: api.pushingbox.com\r\n\r\n");
+//    client.print("GET /pushingbox?devid=");
+//    client.print(devid);
+//    client.println(" HTTP/1.1");
+//    client.print("Host: ");
+//    client.println(serverName);
     client.println("User-Agent: Arduino");
     client.println();
   } 
